@@ -24,7 +24,7 @@ require_once('SeekableVideo.php');
 
 /*
  * Common use of a video intermediary: make sure user is allowed to access this video.
- * <Code here necessary checks>
+ * <Code necessary checks here>
  */
 
 $video = new SeekableVideo('example.mp4');
