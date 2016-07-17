@@ -36,7 +36,7 @@ class SeekableVideo
 	private function range_download($file, $mime_type, $output_filename)
 	{
 		// Open file as binary read
-		$fp = @fopen($file, 'rb');
+		$fp = fopen($file, 'rb');
 	
 		$size = filesize($file);		// File size
 		$length = $size;			// Content length
