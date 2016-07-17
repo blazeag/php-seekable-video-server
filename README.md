@@ -22,6 +22,11 @@ void SeekableVideo($file[, $mime_type], [$output_filename]]);
 ```php
 require_once('SeekableVideo.php');
 
+/*
+ * Common use of a video intermediary: make sure user is allowed to access this video.
+ * <Code here necessary checks>
+ */
+
 $video = new SeekableVideo('example.mp4');
 
 $video->mime_type = 'video/mp4';
