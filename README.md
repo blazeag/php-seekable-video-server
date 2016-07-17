@@ -1,6 +1,6 @@
 ### Simple PHP class to provide a seekable video stream intermediary
 
-Purpose of this PHP class is to intermediate the provision of a video stream w/ seek capability.
+Purpose of this PHP class is to mediate the provision of a video stream w/ seek capability.
 
 #### Constructor:
 ```php
