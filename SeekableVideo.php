@@ -38,10 +38,10 @@ class SeekableVideo
 		// Open file as binary read
 		$fp = @fopen($file, 'rb');
 	
-		$size = filesize($file);	// File size
+		$size = filesize($file);		// File size
 		$length = $size;			// Content length
-		$start = 0;					// Start byte
-		$end = $size - 1; 			// End byte
+		$start = 0;			// Start byte
+		$end = $size - 1; 		// End byte
 	
 		header("Accept-Ranges: 0-{$length}");
 	
