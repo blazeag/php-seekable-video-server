@@ -4,18 +4,18 @@ Purpose of this PHP class is to mediate the provision of a video stream w/ seek 
 
 #### Constructor:
 ```php
-void SeekableVideo($file[, $mime_type], [$output_filename]]);
+void SeekableVideo(string $file[, string $mime_type], [string $output_filename]]);
 ```
 * `$file`: path to the source video file
 * `$mime_type` (optional): mime type to output in HTTP headers. If not specified, tries to presume from file extension. If it is not possible, throws an error
 * `$output_filename` (optional): file name to output in HTTP headers. If not specified, uses source file name
 
-#### Public variables:
-* `$video->mime_type`: set output video mime type
-* `$video->filename`: set output video filename
+#### Public properties:
+* `string $mime_type`: set output video mime type
+* `string $filename`: set output video filename
 
-#### Public functions:
-* `$video->begin_stream()`: begins video file stream
+#### Public methods:
+* `void begin_stream()`: begins video file stream
 
 #### Usage example:
 
