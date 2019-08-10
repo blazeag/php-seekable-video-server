@@ -45,6 +45,45 @@ class SeekableVideo
 	}
 
 
+	/** Check if range or full download is requested and begin */
+	public function begin_stream(): void
+	{
+		// If no mime type is specified, try to presume it
+		if ($this->mime_type === null)
+		{
+			$this->mime_type = $this->presume_mime_type(substr($this->file, strrpos($this->file, '.') + 1));
+		}
+
+		// If video file exists and it is not null, begin download
+		if ($this->check_file($this->file))
+		{
+
+			// If no filename is specified, use original one
+			$output_filename = $this->output_filename ?? strrpos($this->file, '/');
+
+			// Download video from a specific point to end
+			if (isset($_SERVER['HTTP_RANGE']))
+			{
+				$this->range_download($this->file, $this->mime_type, $output_filename);
+			}
+
+			// Download the whole video from start to end
+			else
+			{
+				// Get file size
+				$filesize = filesize($this->file);
+
+				// Output mime type
+				header("Content-Type: {$this->mime_type}");
+				header("Content-Length: {$filesize}");
+				header("Content-Disposition: filename=\"{$output_filename}\"");
+
+				readfile($this->file);
+			}
+		}
+	}
+
+
 	/** Starts range-download stream
 	 *
 	 * @param string $file
@@ -217,45 +256,6 @@ class SeekableVideo
 			header("HTTP/1.1 404 Not Found", true, 404);
 			echo "HTTP/1.1 404 Not Found";
 			exit(404);
-		}
-	}
-
-
-	/** Check if range or full download is requested and begin */
-	public function begin_stream(): void
-	{
-		// If no mime type is specified, try to presume it
-		if ($this->mime_type === null)
-		{
-			$this->mime_type = $this->presume_mime_type(substr($this->file, strrpos($this->file, '.') + 1));
-		}
-
-		// If video file exists and it is not null, begin download
-		if ($this->check_file($this->file))
-		{
-
-			// If no filename is specified, use original one
-			$output_filename = $this->output_filename ?? strrpos($this->file, '/');
-
-			// Download video from a specific point to end
-			if (isset($_SERVER['HTTP_RANGE']))
-			{
-				$this->range_download($this->file, $this->mime_type, $output_filename);
-			}
-
-			// Download the whole video from start to end
-			else
-			{
-				// Get file size
-				$filesize = filesize($this->file);
-
-				// Output mime type
-				header("Content-Type: {$this->mime_type}");
-				header("Content-Length: {$filesize}");
-				header("Content-Disposition: filename=\"{$output_filename}\"");
-
-				readfile($this->file);
-			}
 		}
 	}
 }
