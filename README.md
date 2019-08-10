@@ -10,10 +10,6 @@ void SeekableVideo(string $file[, string $mime_type[, string $output_filename]])
 * `$mime_type` (optional): mime type to output in HTTP headers. If not specified, tries to presume from file extension. If it is not possible, throws a 500 HTTP error
 * `$output_filename` (optional): file name to output in HTTP headers. If not specified, source file name is used
 
-#### Public properties:
-* `string $mime_type`: set output video mime type
-* `string $filename`: set output video filename
-
 #### Public methods:
 * `void begin_stream()`: begins video file stream
 
