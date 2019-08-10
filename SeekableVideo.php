@@ -57,7 +57,6 @@ class SeekableVideo
 		// If video file exists and it is not null, begin download
 		if ($this->check_file($this->file))
 		{
-
 			// If no filename is specified, use original one
 			$output_filename = $this->output_filename ?? strrpos($this->file, '/');
 
